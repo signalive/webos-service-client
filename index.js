@@ -1,4 +1,5 @@
-window.webOS = window.webOS || {};
+// window.webOS = window.webOS || {};
+var webOS = {};
 
 // device.js
 (function(){try{var deviceInfo=JSON.parse(PalmSystem.deviceInfo);webOS.device=deviceInfo}catch(e){webOS.device={}}})();
@@ -32,3 +33,5 @@ window.webOS = window.webOS || {};
 
 // window.js
 (function(){webOS.window={launchParams:function(inWindow){inWindow=inWindow||window;if(inWindow.PalmSystem){return JSON.parse(inWindow.PalmSystem.launchParams||"{}")||{}}return{}},isActivated:function(inWindow){inWindow=inWindow||window;if(inWindow.PalmSystem){return inWindow.PalmSystem.isActivated}return false},activate:function(inWindow){inWindow=inWindow||window;if(inWindow.PalmSystem){inWindow.PalmSystem.activate()}},deactivate:function(inWindow){inWindow=inWindow||window;if(inWindow.PalmSystem){inWindow.PalmSystem.deactivate()}},newCard:function(url,html){if(!url&&!(webOS.platform.legacy||webOS.platform.open)){url="about:blank"}var child=window.open(url);if(html){child.document.write(html)}if(child.PalmSystem){child.PalmSystem.stageReady()}return child},setFullScreen:function(state){if(window.PalmSystem&&PalmSystem.enableFullScreenMode){PalmSystem.enableFullScreenMode(state)}},setWindowProperties:function(inWindow,inProps){if(arguments.length==1){inProps=inWindow;inWindow=window}if(inWindow.PalmSystem&&inWindow.PalmSystem.setWindowProperties){inWindow.webOS.window.properties=inProps=inProps||{};inWindow.PalmSystem.setWindowProperties(inProps)}},getWindowProperties:function(inWindow){inWindow=inWindow||window;inWindow.webOS.window.properties=inWindow.webOS.window.properties||{};return inWindow.webOS.window.properties},blockScreenTimeout:function(state){webOS.window.properties.blockScreenTimeout=state;this.setWindowProperties(navigator.windowProperties)},setSubtleLightbar:function(state){webOS.window.properties.setSubtleLightbar=state;this.setWindowProperties(webOS.window.properties)},setFastAccelerometer:function(state){webOS.window.properties.fastAccelerometer=state;this.setWindowProperties(webOS.window.properties)}}})();
+
+module.exports = webOS;
