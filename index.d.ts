@@ -5,7 +5,7 @@ declare module 'webos-service-client' {
                 serviceID: string,
                 config: {
                     method: string,
-                    params?: {},
+                    parameters?: {},
                     onFailure?: Function,
                     onSuccess?: Function,
                     onComplete?: Function
